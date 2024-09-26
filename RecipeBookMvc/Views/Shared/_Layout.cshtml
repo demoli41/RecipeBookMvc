@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string username = User.Identity.Name;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,20 +24,26 @@
             recipe book
         </div>
         <ul class="nav-link">
-            <li><a class="active" href="/Home/Index">Home</a></li>
-            <li><a href="/Home/About">About</a></li>
-            <li>
-                <a href="#">Admin <i class="fa fa-caret-down"></i></a>
+            <li><a class="active" href="/Home/Index">Головна</a></li>
+            <li><a href="/Home/About">Про нас</a></li>
+            @if (!string.IsNullOrEmpty(username))
+            {
+                <li>
+                    <a href="#">Адміністратор <i class="fa fa-caret-down"></i></a>
 
                 <ul class="dropdown-nav-link">
                     <li><a href="/forms.html">Form</a></li>
                     <li><a href="/table.html">Table</a></li>
                     <li><a href="/movie-detail.html">Recipe Detail</a></li>
-                    <li><a href="#">Link 4</a></li>
-                    <li><a href="#">Logout</a></li>
+                        <li><a href="/UserAuthentication/Logout">Вихід</a></li>
                 </ul>
             </li>
-            <li><a href="#">Login</a></li>
+            }
+            @if(string.IsNullOrEmpty(username))
+            {
+                <li><a href="/UserAuthentication/Login">Увійти</a></li>
+            }
+
         </ul>
     </nav>
     <div class="container">

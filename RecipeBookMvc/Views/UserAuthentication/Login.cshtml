@@ -1,39 +1,37 @@
-﻿
-@model RecipeBookMvc.Models.DTO.LoginModel
+﻿@model RecipeBookMvc.Models.DTO.LoginModel
 @{
 }
 
-<form class="w-40">
-    <h2 class="pb-10">Додати страву</h2>
+<form class="w-40" asp-action="Login" method="post">
+    <h2 class="pb-10">Login</h2>
     <div class="input-container">
-        <label for="DishName" class="w-40">Назва страви</label>
-        <input type="text" class="input">
+        <label asp-for="Username" class="w-40">Ім'я'</label>
+        <input type="text" class="input" asp-for="Username">
     </div>
     <div class="message-box pd-x-28 error">
-        Необхіна назва страви
+        <span asp-validation-for="Username"></span>
     </div>
 
 
     <div class="input-container">
-        <label for="Category" class="w-40">Категорія</label>
-        <select class="input">
-            <option value="">--select--</option>
-            <option value="1">Десерт</option>
-            <option value="2">Гарнір</option>
-            <option value="3">Напій</option>
-            <option value="4">Торт</option>
-        </select>
+        <label asp-for="Password" class="w-40">Пароль</label>
+        <input type="password" class="input" asp-for="Password">
     </div>
     <div class="message-box pd-x-28 error">
-        Категорія необхідна
+        <span asp-validation-for="Password"></span>
     </div>
 
-    <div class="alert mb-1">
-        Успішно збережено
-    </div>
+
+    @if (TempData["msg"] != null)
+    {
+        <div class="alert mb-1">
+            @TempData["msg"]
+        </div>
+    }
 
     <div class="input-container">
-        <button class="btn btn-default" type="submit">Зберегти</button>
-        <a class="btn btn-sec" href="#">Додати ще</a>
+        <button class="btn btn-default" type="submit">Увійти</button>
+        @*<a class="btn btn-sec" href="#">Add more</a>*@
     </div>
 </form>
+ 
