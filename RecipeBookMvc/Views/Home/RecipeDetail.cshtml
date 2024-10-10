@@ -1,0 +1,21 @@
+﻿@model RecipeBookMvc.Models.Domain.Recipe;
+@{
+}
+<div class="movie-detail w-80 m-auto">
+    <div class="img-container">
+        <img alt="image" src="/Uploads/@Model.RecipeImage">
+    </div>
+
+    <div class="detail-container">
+        <h3>@Model.Title</h3>
+        <h4>@Model.CategoryNames</h4>
+        <h4>@Model.Complexity</h4>
+        <h4 class="recipe-abriviation">Інгредієнти</h4>
+        <h4>@Model.Ingredients</h4>
+        <h4 class="recipe-abriviation">Процес</h4>
+        <h4>@Model.Instruction</h4>
+    </div>
+</div>
+<div class="w-80 m-auto">
+    <a href="/Home/Index" class="btn btn-default">Назад</a>
+</div>

@@ -12,20 +12,20 @@ namespace RecipeBookMvc.Controllers
         {
            this.authService = authService;
         }
-        //public async Task<IActionResult> Register()
-        //{
-        //    var model = new RegistrationModel
-        //    {
-        //        Email = "admin@gmail.com",
-        //        Username = "admin",
-        //        Name = "Bohdan",
-        //        Password = "Admin@123",
-        //        PasswordConfirm = "dmin@123",
-        //        Role = "Admin",
-        //    };
-        //    var result=await authService.RegisterAsync(model);
-        //    return Ok(result.Message);
-        //}
+        public async Task<IActionResult> Register()
+        {
+            var model = new RegistrationModel
+            {
+                Email = "admin@gmail.com",
+                Username = "admin",
+                Name = "Bohdan",
+                Password = "Admin@123",
+                PasswordConfirm = "Admin@123",
+                Role = "Admin",
+            };
+            var result = await authService.RegisterAsync(model);
+            return Ok(result.Message);
+        }
 
         public async Task<IActionResult> Login()
         {

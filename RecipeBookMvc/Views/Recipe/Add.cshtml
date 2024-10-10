@@ -1,0 +1,72 @@
+﻿@model RecipeBookMvc.Models.Domain.Recipe
+@{
+}
+
+<form class="w-40" asp-action="Add" method="post" enctype="multipart/form-data">
+    <h2 class="pb-10">Додати рецепт</h2>
+
+    <div class="input-container">
+        <label asp-for="Title" class="w-40">Назва страви</label>
+        <input type="text" class="input" asp-for="Title">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Title"> </span>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="ImageFile" class="w-40">Зображення</label>
+        <input type="file"  asp-for="ImageFile">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="ImageFile"> </span>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="Categorys" class="w-40">Категорія</label>
+        <select asp-items="Model.CategoryList"  class="input" asp-for="Categorys">
+            <option value="">Оберіть категорію</option>
+        </select>
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Categorys"> </span>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="Complexity" class="w-40">Складність</label>
+        <input type="text" class="input" asp-for="Complexity">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Complexity"> </span>
+    </div>
+
+
+    <div class="input-container">
+        <label asp-for="Ingredients" class="w-40">Інгредієнти</label>
+        <input type="text" class="input" asp-for="Ingredients">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Ingredients"> </span>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="Instruction" class="w-40">Процес</label>
+        <input type="text" class="input" asp-for="Instruction">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Instruction"> </span>
+    </div>
+
+
+
+    @if (TempData["msg"] != null)
+    {
+        <div class="alert mb-1">
+            @TempData["msg"]
+        </div>
+    }
+
+    <div class="input-container">
+        <button class="btn btn-default" type="submit">Зберегти</button>
+        <a class="btn btn-sec" href="/Recipe/RecipeList">Усі рецепти</a>
+    </div>
+</form>

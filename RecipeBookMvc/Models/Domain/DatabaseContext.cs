@@ -10,5 +10,11 @@ namespace RecipeBookMvc.Models.Domain
 
               }
 
+        public DbSet<Category> Category { get; set; }
+        public DbSet<RecipeCategory> RecipeCategory { get; set; }
+
+        public DbSet<Recipe> Recipe { get; set; }
+
+
     }
 }

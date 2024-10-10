@@ -1,0 +1,40 @@
+﻿@model RecipeBookMvc.Models.DTO.RecipeListVM
+@{
+}
+
+<div class="tbl-container">
+    <h2>Рецепти</h2>
+
+    <table>
+        <tr>
+            <th>Назва</th>
+            <th>Категорія</th>
+            <th>Зображення</th>
+            <th>Складність</th>
+            <th>Інгредієнти</th>
+            <th>Інструкція</th>
+            <th>Дія</th>
+        </tr>
+        @foreach (var item in Model.RecipeList)
+		{
+			<tr>
+				<td>@item.Title</td>
+                <td>@item.CategoryNames</td>
+                <td>
+                    <img style="height:100px;width:100px" src="/Uploads/@item.RecipeImage" />                   
+                </td>
+                <td>@item.Complexity</td>
+                <td>@item.Ingredients</td>
+                <td>@item.Instruction</td>
+				<td>
+					<a href="/Recipe/Edit/@item.Id" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                    <a href="/Recipe/Delete/@item.Id" onclick="return window.confirm('Are you sure?')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+				</td>
+			</tr>
+		}
+  
+    </table>
+    <div class="input-container">
+        <a href="/Recipe/Add" class="btn btn-sec">Повернутись</a>
+    </div>
+</div>

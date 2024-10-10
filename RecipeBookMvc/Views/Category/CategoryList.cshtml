@@ -1,0 +1,28 @@
+﻿@model IEnumerable<RecipeBookMvc.Models.Domain.Category>
+@{
+}
+
+<div class="tbl-container">
+    <h2>Категорії</h2>
+
+    <table>
+        <tr>
+            <th>Назва</th>
+            <th>Дія</th>
+        </tr>
+        @foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.CategoryName</td>
+				<td>
+					<a href="/Category/Edit/@item.Id" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                    <a name="id" href="/Category/Delete/@item.Id" onclick="return window.confirm('Are you sure?')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+				</td>
+			</tr>
+		}
+  
+    </table>
+    <div class="input-container">
+        <a href="/Category/Add" class="btn btn-sec">Повернутись</a>
+    </div>
+</div>

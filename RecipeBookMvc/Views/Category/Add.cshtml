@@ -1,0 +1,27 @@
+﻿@model RecipeBookMvc.Models.Domain.Category
+@{
+}
+
+<form class="w-40" asp-action="Add" method="post">
+    <h2 class="pb-10">Додати категорію</h2>
+    <div class="input-container">
+        <label asp-for="CategoryName" class="w-40">Назва категорії</label>
+        <input type="text" class="input" asp-for="CategoryName">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="CategoryName"> </span>
+    </div>
+
+
+    @if (TempData["msg"] != null)
+    {
+        <div class="alert mb-1">
+            @TempData["msg"]
+        </div>
+    }
+
+    <div class="input-container">
+        <button class="btn btn-default" type="submit">Зберегти</button>
+        <a class="btn btn-sec" href="/Category/CategoryList">Усі категорії</a>
+    </div>
+</form>
