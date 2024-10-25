@@ -16,6 +16,16 @@ textarea {
     max-width: 280px;
 }
 
+.nav-bar-list {
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    /* background-color: var(--nav-bg-color); */
+    padding: 1.1rem 0.5px;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
 /* styles for validation helpers */
 .field-validation-error {
     color: #b94a48;

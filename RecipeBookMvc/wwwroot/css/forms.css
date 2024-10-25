@@ -93,6 +93,13 @@ h1,h2,h3,h4,h5,h6{
  padding-bottom: 10px;
 }
 
+.header-search{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
 .tbl-container{
     font-family:'Mukta', sans-serif;
     margin: 1.2rem 0;

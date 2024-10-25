@@ -3,7 +3,16 @@
 }
 
 <div class="tbl-container">
-    <h2>Рецепти</h2>
+    <div class="nav-bar-list">
+        <h2>Рецепти</h2>
+        <section class="search-bar">
+            <form method="get" asp-action="RecipeList">
+                <input type="text" name="term" placeholder="Пошук">
+                <button type="submit"><i class="fa fa-search"></i></button>
+                <a class="btn btn-default" href="/Recipe/RecipeList">Все</a>
+            </form>
+        </section>
+    </div>
 
     <table>
         <tr>
@@ -28,7 +37,7 @@
                 <td>@item.Instruction</td>
 				<td>
 					<a href="/Recipe/Edit/@item.Id" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                    <a href="/Recipe/Delete/@item.Id" onclick="return window.confirm('Are you sure?')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                    <a href="/Recipe/Delete/@item.Id" onclick="return window.confirm('Ви впевнені?')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 				</td>
 			</tr>
 		}

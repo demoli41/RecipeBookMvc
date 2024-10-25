@@ -103,9 +103,9 @@ namespace RecipeBookMvc.Controllers
             }
         }
 
-        public IActionResult RecipeList()
+        public IActionResult RecipeList(string term="")
         {
-            var data = this._recipeService.List();
+            var data = this._recipeService.List(term);
             return View(data);
         }
 
