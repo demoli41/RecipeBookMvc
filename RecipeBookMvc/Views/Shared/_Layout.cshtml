@@ -29,11 +29,22 @@
             @if (!string.IsNullOrEmpty(username))
             {
                 <li>
-                    <a href="#">Адміністратор <i class="fa fa-caret-down"></i></a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a href="#">Адміністратор <i class="fa fa-caret-down"></i></a>
+                    }else
+                    {
+                        <a href="#">@username<i class="fa fa-caret-down"></i></a>
+                    }
 
                     <ul class="dropdown-nav-link">
-                        <li><a href="/Category/Add">Категорії</a></li>
+                        
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li><a href="/Category/Add">Категорії</a></li>
+                        }
                         <li><a href="/Recipe/Add">Рецепти</a></li>
+
                         <li><a href="/UserAuthentication/Logout">Вихід</a></li>
                     </ul>
                 </li>
@@ -46,8 +57,10 @@
 
         </ul>
     </nav>
-    <div class="container">
-        @RenderBody()
+    <div>
+        <div class="container">
+            @RenderBody()
+        </div>
     </div>
     <footer>
             &#169; 2024 Bohdan Shvets

@@ -12,11 +12,12 @@ namespace RecipeBookMvc.Models.DTO
         public string Username { get; set; }
 
         [Required]
-        [RegularExpression("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*[#$^+=!*()@%&]).{6,}$", ErrorMessage = "Minimum length 6 and must contain  1 Uppercase,1 lowercase, 1 special character and 1 digit")]
+        [RegularExpression("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*[#$^+=!*()@%&]).{6,}$", ErrorMessage = "Мінімальна довжина 6 і має містити 1 великий регістр, 1 нижній регістр, 1 спеціальний символ і 1 цифру")]
         public string Password { get; set; }
         [Required]
         [Compare("Password")]
         public string PasswordConfirm { get; set; }
-        public string Role { get; set; }
+        public string Role { get; set; } = "User";
+        //public string Role { get; set; } ;
     }
 }

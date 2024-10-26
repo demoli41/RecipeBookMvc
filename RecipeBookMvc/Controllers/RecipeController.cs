@@ -15,14 +15,14 @@ namespace RecipeBookMvc.Controllers
         private readonly ICategoryService _categoryService;
         public RecipeController(IRecipeService RecipeService, IFileService fileService, ICategoryService categoryService)
         {
-               _recipeService = RecipeService;
-                _fileService = fileService;
+            _recipeService = RecipeService;
+            _fileService = fileService;
             _categoryService = categoryService;
         }
         public IActionResult Add()
         {
             var model = new Recipe();
-            model.CategoryList = _categoryService.List().Select(a=>new SelectListItem { Text=a.CategoryName,Value=a.Id.ToString()});
+            model.CategoryList = _categoryService.List().Select(a => new SelectListItem { Text = a.CategoryName, Value = a.Id.ToString() });
             return View(model);
         }
 
@@ -35,17 +35,17 @@ namespace RecipeBookMvc.Controllers
 
             if (!ModelState.IsValid)
                 return View(model);
-            if (model.RecipeImage != null) 
-            { 
-            var fileResult=this._fileService.SaveImage(model.ImageFile);
-            if(fileResult.Item1==0)
+            if (model.RecipeImage != null)
             {
-                TempData["msg"] = "File could not saved";
+                var fileResult = this._fileService.SaveImage(model.ImageFile);
+                if (fileResult.Item1 == 0)
+                {
+                    TempData["msg"] = "File could not saved";
                     return View(model);
                 }
-            var imageName = fileResult.Item2;
-            model.RecipeImage = imageName;
-            }   
+                var imageName = fileResult.Item2;
+                model.RecipeImage = imageName;
+            }
             var result = _recipeService.Add(model);
             if (result)
             {
@@ -63,8 +63,8 @@ namespace RecipeBookMvc.Controllers
         public IActionResult Edit(int id)
         {
             var model = _recipeService.GetById(id);
-           var selectedCategorys = _recipeService.GetCategoryByRecipeId(model.Id);
-            MultiSelectList multiCategoryList=new MultiSelectList(_categoryService.List(), "Id", "CategoryName", selectedCategorys);
+            var selectedCategorys = _recipeService.GetCategoryByRecipeId(model.Id);
+            MultiSelectList multiCategoryList = new MultiSelectList(_categoryService.List(), "Id", "CategoryName", selectedCategorys);
             model.MultiCategoryList = multiCategoryList;
             return View(model);
         }
@@ -103,7 +103,7 @@ namespace RecipeBookMvc.Controllers
             }
         }
 
-        public IActionResult RecipeList(string term="")
+        public IActionResult RecipeList(string term = "")
         {
             var data = this._recipeService.List(term);
             return View(data);
@@ -113,7 +113,7 @@ namespace RecipeBookMvc.Controllers
         {
             var result = _recipeService.Delete(id);
             return RedirectToAction(nameof(RecipeList));
-           
+
         }
     }
 }

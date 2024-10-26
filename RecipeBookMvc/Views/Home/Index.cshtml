@@ -1,9 +1,9 @@
-﻿
+﻿﻿
 @model RecipeBookMvc.Models.DTO.RecipeListVM
 @{
     Layout = "_Layout";
 }
-    
+
 <div class="container">
     <section class="search-bar">
         <form method="get" asp-action="Index">
@@ -25,8 +25,8 @@
                     <h4>@recipe.Title</h4>
                     <h4>@recipe.CategoryNames</h4>
                     <h4>@recipe.Complexity</h4>
-@*                     <h4>Інгредієнти: @recipe.Ingredients</h4>
-                    <h4>Процес: @recipe.Instruction</h4> *@
+                    @*                     <h4>Інгредієнти: @recipe.Ingredients</h4>
+                <h4>Процес: @recipe.Instruction</h4> *@
                 </div>
             </div>
         }
@@ -34,15 +34,15 @@
     </section>
 
     <div class="pagination">
-        @for(int i=1;i<=Model.TotalPages;i++)
+        @for (int i = 1; i <= Model.TotalPages; i++)
         {
-            if(i==Model.CurrentPage)
-			{
-				<a class="active" href="/Home/Index?currentPage=@i&term=@Model.Term">@i</a>
-			}
-			else
-			{
-                <a  href="/Home/Index?currentPage=@i&term=@Model.Term">@i</a>
-			}
+            if (i == Model.CurrentPage)
+            {
+                <a class="active" href="/Home/Index?currentPage=@i&term=@Model.Term">@i</a>
+            }
+            else
+            {
+                <a href="/Home/Index?currentPage=@i&term=@Model.Term">@i</a>
+            }
         }
-</div>
+    </div>

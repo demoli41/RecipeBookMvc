@@ -10,29 +10,42 @@ namespace RecipeBookMvc.Controllers
         private IUserAuthenticationService authService;
         public UserAuthenticationController(IUserAuthenticationService authService)
         {
-           this.authService = authService;
+            this.authService = authService;
         }
-        public async Task<IActionResult> Register()
+
+        [HttpGet]
+        public IActionResult Register()
         {
-            var model = new RegistrationModel
+            return View(new RegistrationModel());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegistrationModel model)
+        {
+            if (!ModelState.IsValid)
             {
-                Email = "admin@gmail.com",
-                Username = "admin",
-                Name = "Bohdan",
-                Password = "Admin@123",
-                PasswordConfirm = "Admin@123",
-                Role = "Admin",
-            };
+                return View(model);
+            }
+
             var result = await authService.RegisterAsync(model);
-            return Ok(result.Message);
+            if (result.StatusCode == 1)
+            {
+                TempData["msg"] = "Реєстрація успішна";
+                return RedirectToAction(nameof(Login));
+            }
+            else
+            {
+                TempData["msg"] = result.Message;
+                return View(model);
+            }
         }
 
         public async Task<IActionResult> Login()
         {
             return View();
         }
-        [HttpPost]
 
+        [HttpPost]
         public async Task<IActionResult> Login(LoginModel model)
         {
             if (!ModelState.IsValid)
@@ -40,13 +53,13 @@ namespace RecipeBookMvc.Controllers
                 return View(model);
             }
             var result = await authService.LoginAsync(model);
-            if(result.StatusCode==1)
+            if (result.StatusCode == 1)
             {
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
-                TempData["msg"] = "Could not logged in";
+                TempData["msg"] = "Could not log in";
                 return RedirectToAction(nameof(Login));
             }
         }
@@ -57,4 +70,5 @@ namespace RecipeBookMvc.Controllers
             return RedirectToAction(nameof(Login));
         }
     }
+
 }

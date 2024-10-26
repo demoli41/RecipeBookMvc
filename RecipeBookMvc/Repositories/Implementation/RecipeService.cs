@@ -9,7 +9,7 @@ namespace RecipeBookMvc.Repositories.Implementation
         private readonly DatabaseContext ctx;
         public RecipeService(DatabaseContext ctx)
         {
-                this.ctx = ctx;
+            this.ctx = ctx;
         }
         public bool Add(Recipe model)
         {
@@ -29,7 +29,7 @@ namespace RecipeBookMvc.Repositories.Implementation
                 ctx.SaveChanges();
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -40,10 +40,10 @@ namespace RecipeBookMvc.Repositories.Implementation
             try
             {
                 var data = this.GetById(id);
-                if (data == null) 
+                if (data == null)
                     return false;
-                var recipeCategorys =ctx.RecipeCategory.Where(a => a.RecipeId == data.Id);
-                foreach (var recipeCategory  in recipeCategorys)
+                var recipeCategorys = ctx.RecipeCategory.Where(a => a.RecipeId == data.Id);
+                foreach (var recipeCategory in recipeCategorys)
                 {
                     ctx.RecipeCategory.Remove(recipeCategory);
                 }
@@ -62,13 +62,13 @@ namespace RecipeBookMvc.Repositories.Implementation
             return ctx.Recipe.Find(id);
         }
 
-        public RecipeListVM List(string term="",bool paging=false,int currentPage=0 )
+        public RecipeListVM List(string term = "", bool paging = false, int currentPage = 0)
         {
             var data = new RecipeListVM();
 
-            var list= ctx.Recipe.ToList();
-       
-            if(!string.IsNullOrEmpty(term))
+            var list = ctx.Recipe.ToList();
+
+            if (!string.IsNullOrEmpty(term))
             {
                 term = term.ToLower();
                 list = list.Where(a => a.Title.ToLower().Contains(term)).ToList();
@@ -79,7 +79,7 @@ namespace RecipeBookMvc.Repositories.Implementation
                 int pageSize = 5;
                 int count = list.Count;
                 int TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-                list=list.Skip((currentPage - 1)*pageSize).Take(pageSize).ToList();
+                list = list.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
                 data.PageSize = pageSize;
                 data.CurrentPage = currentPage;
                 data.TotalPages = TotalPages;

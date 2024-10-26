@@ -1,0 +1,51 @@
+﻿@model RecipeBookMvc.Models.DTO.RegistrationModel
+
+<form class="w-40"  asp-action="Register" method="post">
+    <h2 class="pb-10">Реєстрація</h2>
+
+    <div class="input-container">
+        <label class="w-40" asp-for="Name">Ім'я</label>
+        <input class="input" asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="input-container">
+        <label class="w-40"  asp-for="Email">Email</label>
+        <input class="input" asp-for="Email" type="email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="input-container">
+        <label class="w-40" asp-for="Username">Ім'я користувача</label>
+        <input class="input" asp-for="Username" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+    <div class="input-container">
+        <label class="w-40"  asp-for="Password">Пароль</label>
+        <input class="input" asp-for="Password" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="input-container">
+        <label class="w-40" asp-for="PasswordConfirm">Підтвердження пароля</label>
+        <input class="input" asp-for="PasswordConfirm" type="password" />
+        <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="Role" value="User" />
+   @*  <div class="input-container">
+        <label class="w-40" asp-for="Role">Роль</label>
+        <input class="input" asp-for="Role" />
+        <span asp-validation-for="Role" class="text-danger"></span>
+    </div> *@
+
+    @if (TempData["msg"] != null)
+    {
+        <div class="alert alert-info">
+            @TempData["msg"]
+        </div>
+    }
+    <div class="input-container">
+    <button type="submit" class="btn btn-default">Зареєструватись</button>
+    </div>
+</form>

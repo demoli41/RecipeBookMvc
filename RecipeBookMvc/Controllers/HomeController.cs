@@ -3,17 +3,17 @@ using RecipeBookMvc.Repositories.Abstract;
 
 namespace RecipeBookMvc.Controllers
 {
-    
+
     public class HomeController : Controller
     {
         private readonly IRecipeService _recipeService;
         public HomeController(IRecipeService recipeService)
         {
-             _recipeService = recipeService;
+            _recipeService = recipeService;
         }
-        public IActionResult Index(string term="", int currentPage = 1)
+        public IActionResult Index(string term = "", int currentPage = 1)
         {
-            var recipes = _recipeService.List(term,true,currentPage);
+            var recipes = _recipeService.List(term, true, currentPage);
             return View(recipes);
         }
         public IActionResult About()
