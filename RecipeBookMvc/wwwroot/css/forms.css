@@ -31,14 +31,18 @@ label{
   color: var(--primary-color);
 
 }
+
+
+
+
 .input {
-    padding:0 0.5rem;
+    padding: 0 0.5rem;
     border: 0;
-    box-shadow:0 1px 3px 0 rgb(43, 43, 43) ;
+    box-shadow: 0 1px 3px 0 rgb(43, 43, 43);
     font-size: 15px;
     width: 100%;
-  color: var(--primary-color);
-  border-radius: 5px;
+    color: var(--primary-color);
+    border-radius: 5px;
 }
 
 .alert{

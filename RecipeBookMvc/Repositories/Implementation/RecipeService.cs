@@ -59,45 +59,67 @@ namespace RecipeBookMvc.Repositories.Implementation
 
         public Recipe GetById(int id)
         {
-            return ctx.Recipe.Find(id);
+            var recipe = ctx.Recipe.Find(id);
+
+            if (recipe != null)
+            {
+                var categoryNames = ctx.RecipeCategory
+                                       .Where(rc => rc.RecipeId == recipe.Id)
+                                       .Join(ctx.Category, rc => rc.CategoryId, c => c.Id, (rc, c) => c.CategoryName)
+                                       .ToList();
+                recipe.CategoryNames = string.Join(", ", categoryNames);
+            }
+
+            return recipe;
         }
 
-        public RecipeListVM List(string term = "", bool paging = false, int currentPage = 0)
+        public RecipeListVM List(string term = "", int? categoryId = null, bool paging = false, int currentPage = 0)
         {
             var data = new RecipeListVM();
 
-            var list = ctx.Recipe.ToList();
+            var list = ctx.Recipe.AsQueryable();
 
             if (!string.IsNullOrEmpty(term))
             {
                 term = term.ToLower();
-                list = list.Where(a => a.Title.ToLower().Contains(term)).ToList();
+                list = list.Where(a => a.Title.ToLower().Contains(term));
             }
+
+            // Додаємо фільтрацію за категорією
+            if (categoryId.HasValue)
+            {
+                var recipeIds = ctx.RecipeCategory
+                                  .Where(rc => rc.CategoryId == categoryId)
+                                  .Select(rc => rc.RecipeId)
+                                  .ToList();
+                list = list.Where(r => recipeIds.Contains(r.Id));
+            }
+
+            // Пагінація
             if (paging)
             {
-                //paging
-                int pageSize = 5;
-                int count = list.Count;
-                int TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-                list = list.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+                int pageSize = 10;
+                int count = list.Count();
+                int totalPages = (int)Math.Ceiling(count / (double)pageSize);
+                list = list.Skip((currentPage - 1) * pageSize).Take(pageSize);
                 data.PageSize = pageSize;
                 data.CurrentPage = currentPage;
-                data.TotalPages = TotalPages;
+                data.TotalPages = totalPages;
             }
-
-            foreach (var recipe in list)
+            var recipeList = list.ToList();
+            foreach (var recipe in recipeList)
             {
-                var categorys = (from category in ctx.Category
-                                 join rc in ctx.RecipeCategory
-                               on category.Id equals rc.CategoryId
-                                 where rc.RecipeId == recipe.Id
-                                 select category.CategoryName
-                               ).ToList();
-                var categoryNames = string.Join(',', categorys);
-                recipe.CategoryNames = categoryNames;
+                var categoryNames = ctx.RecipeCategory
+                                       .Where(rc => rc.RecipeId == recipe.Id)
+                                       .Join(ctx.Category, rc => rc.CategoryId, c => c.Id, (rc, c) => c.CategoryName)
+                                       .ToList();
+                recipe.CategoryNames = string.Join(", ", categoryNames);
             }
-            data.RecipeList = list.AsQueryable();
 
+            data.RecipeList = recipeList.AsQueryable();
+            return data;
+
+            data.RecipeList = list.ToList().AsQueryable();
             return data;
         }
 

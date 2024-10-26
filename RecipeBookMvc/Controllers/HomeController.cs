@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RecipeBookMvc.Repositories.Abstract;
+using RecipeBookMvc.Repositories.Implementation;
 
 namespace RecipeBookMvc.Controllers
 {
@@ -7,13 +8,16 @@ namespace RecipeBookMvc.Controllers
     public class HomeController : Controller
     {
         private readonly IRecipeService _recipeService;
-        public HomeController(IRecipeService recipeService)
+        private readonly ICategoryService _categoryService;
+        public HomeController(IRecipeService recipeService, ICategoryService categoryService)
         {
             _recipeService = recipeService;
+            _categoryService = categoryService;
         }
-        public IActionResult Index(string term = "", int currentPage = 1)
+        public IActionResult Index(string term = "", int currentPage = 1, int? categoryId = null)
         {
-            var recipes = _recipeService.List(term, true, currentPage);
+            ViewBag.Categories = _categoryService.List();
+            var recipes = _recipeService.List(term, categoryId, true, currentPage);
             return View(recipes);
         }
         public IActionResult About()

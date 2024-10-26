@@ -9,7 +9,8 @@ namespace RecipeBookMvc.Repositories.Abstract
         bool Update(Recipe model);
         Recipe GetById(int id);
         bool Delete(int id);
-        RecipeListVM List(string term = "", bool paging = false, int currentPage = 0);
+
+        RecipeListVM List(string term = "", int? categoryId = null, bool paging = false, int currentPage = 0);
 
         List<int> GetCategoryByRecipeId(int recipeId);
     }

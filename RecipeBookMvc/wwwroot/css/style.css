@@ -94,6 +94,34 @@ body {
   width: 100%;
 }
 
+.select {
+    padding: 0 0.5rem;
+    border: 2px;
+    font-size: 15px;
+    color: var(--primary-color);
+    appearance: none; /* remove default appearance set by the browser */
+    outline: solid #c4c4c4 1px;
+    cursor: pointer;
+    background: white;
+    border-radius: 3px; /* round the border corners */
+    padding: 5px 10px;
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.select-option {
+    
+    cursor: pointer; /* change the mouse cursor icon */
+    background: -webkit-linear-gradient(to right, #a044ff, #6a3093); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #a044ff, #6a3093); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+
+
 .search-bar{
   width: 100%; 
   padding: 0 2%;

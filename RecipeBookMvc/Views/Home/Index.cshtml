@@ -7,7 +7,14 @@
 <div class="container">
     <section class="search-bar">
         <form method="get" asp-action="Index">
-            <input type="text" name="term" placeholder="Пошук">
+            <input type="text" name="term" placeholder="Пошук" value="@Model.Term" />
+                <select class="select" name="categoryId">
+                    <option value="">Всі категорії</option>
+                    @foreach (var category in ViewBag.Categories)
+                    {
+                        <option class="select-option" value="@category.Id">@category.CategoryName</option>
+                    }
+                </select>
             <button type="submit"><i class="fa fa-search"></i></button>
             <a class="btn btn-default" href="/Home/Index">Все</a>
         </form>
@@ -46,3 +53,4 @@
             }
         }
     </div>
+</div>
