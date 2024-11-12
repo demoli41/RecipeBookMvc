@@ -85,7 +85,7 @@ namespace RecipeBookMvc.Repositories.Implementation
                 list = list.Where(a => a.Title.ToLower().Contains(term));
             }
 
-            // Додаємо фільтрацію за категорією
+            
             if (categoryId.HasValue)
             {
                 var recipeIds = ctx.RecipeCategory
@@ -95,7 +95,7 @@ namespace RecipeBookMvc.Repositories.Implementation
                 list = list.Where(r => recipeIds.Contains(r.Id));
             }
 
-            // Пагінація
+            
             if (paging)
             {
                 int pageSize = 10;

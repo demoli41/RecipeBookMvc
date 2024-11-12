@@ -59,7 +59,7 @@ namespace RecipeBookMvc.Controllers
             }
             else
             {
-                TempData["msg"] = "Could not log in";
+                TempData["msg"] = "Неправильний пароль або логін";
                 return RedirectToAction(nameof(Login));
             }
         }

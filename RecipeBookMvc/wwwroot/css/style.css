@@ -276,11 +276,11 @@ footer {
   max-height: 50%;
 }
 .img-container {
-  max-width: 80%;
+  max-width: 100%;
 }
 .img-container img {
-  max-width: 100%;
-  height: auto;
+  width: 300px;
+  height: 300px;
   border-radius: 0.25rem;
 }
 .detail-container {

@@ -6,34 +6,44 @@
     <div class="input-container">
         <label class="w-40" asp-for="Name">Ім'я</label>
         <input class="input" asp-for="Name" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Name"> </span>
     </div>
 
     <div class="input-container">
         <label class="w-40"  asp-for="Email">Email</label>
         <input class="input" asp-for="Email" type="email" />
-        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Email"> </span>
     </div>
 
     <div class="input-container">
         <label class="w-40" asp-for="Username">Ім'я користувача</label>
         <input class="input" asp-for="Username" />
-        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Username"> </span>
     </div>
 
     <div class="input-container">
         <label class="w-40"  asp-for="Password">Пароль</label>
         <input class="input" asp-for="Password" type="password" />
-        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Password"> </span>
     </div>
 
     <div class="input-container">
         <label class="w-40" asp-for="PasswordConfirm">Підтвердження пароля</label>
         <input class="input" asp-for="PasswordConfirm" type="password" />
-        <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="PasswordConfirm"> </span>
     </div>
     <input type="hidden" asp-for="Role" value="User" />
-   @*  <div class="input-container">
+@*     <div class="input-container">
         <label class="w-40" asp-for="Role">Роль</label>
         <input class="input" asp-for="Role" />
         <span asp-validation-for="Role" class="text-danger"></span>

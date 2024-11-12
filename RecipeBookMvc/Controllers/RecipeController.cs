@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RecipeBookMvc.Models.Domain;
+using RecipeBookMvc.Models.DTO;
 using RecipeBookMvc.Repositories.Abstract;
+using System.Security.Claims;
 
 namespace RecipeBookMvc.Controllers
 {
@@ -32,6 +34,8 @@ namespace RecipeBookMvc.Controllers
         {
             model.CategoryList = _categoryService.List().Select(a => new SelectListItem { Text = a.CategoryName, Value = a.Id.ToString() });
             model.RecipeImage = model.ImageFile.FileName;
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            model.UserId = userId;
 
             if (!ModelState.IsValid)
                 return View(model);
@@ -105,8 +109,19 @@ namespace RecipeBookMvc.Controllers
 
         public IActionResult RecipeList(string term = "")
         {
-            var data = this._recipeService.List(term);
-            return View(data);
+            IQueryable<Recipe> data;
+
+            if (User.IsInRole("Admin"))
+            {
+                data = _recipeService.List(term).RecipeList;
+            }
+            else
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                data = _recipeService.List(term).RecipeList.Where(r => r.UserId == userId);
+            }
+
+            return View(new RecipeListVM { RecipeList = data });
         }
 
         public IActionResult Delete(int id)

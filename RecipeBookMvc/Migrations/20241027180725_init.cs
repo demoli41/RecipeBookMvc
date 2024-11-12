@@ -74,7 +74,8 @@ namespace RecipeBookMvc.Migrations
                     Complexity = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RecipeImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Ingredients = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Instruction = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Instruction = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
