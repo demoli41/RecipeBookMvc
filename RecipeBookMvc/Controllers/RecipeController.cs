@@ -29,27 +29,33 @@ namespace RecipeBookMvc.Controllers
         }
 
         [HttpPost]
-
         public IActionResult Add(Recipe model)
         {
             model.CategoryList = _categoryService.List().Select(a => new SelectListItem { Text = a.CategoryName, Value = a.Id.ToString() });
-            model.RecipeImage = model.ImageFile.FileName;
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             model.UserId = userId;
 
-            if (!ModelState.IsValid)
-                return View(model);
-            if (model.RecipeImage != null)
+            if (model.ImageFile != null)
             {
+                model.RecipeImage = model.ImageFile.FileName;
+
                 var fileResult = this._fileService.SaveImage(model.ImageFile);
                 if (fileResult.Item1 == 0)
                 {
-                    TempData["msg"] = "File could not saved";
+                    TempData["msg"] = "File could not be saved";
                     return View(model);
                 }
                 var imageName = fileResult.Item2;
                 model.RecipeImage = imageName;
             }
+            else
+            {
+                model.RecipeImage = "default-image.jpg";
+            }
+
+            if (!ModelState.IsValid)
+                return View(model);
+
             var result = _recipeService.Add(model);
             if (result)
             {
@@ -64,6 +70,7 @@ namespace RecipeBookMvc.Controllers
         }
 
 
+
         public IActionResult Edit(int id)
         {
             var model = _recipeService.GetById(id);
@@ -73,31 +80,34 @@ namespace RecipeBookMvc.Controllers
             return View(model);
         }
 
-        [HttpPost]
 
+
+        [HttpPost]
         public IActionResult Edit(Recipe model)
         {
-
             var selectedCategorys = _recipeService.GetCategoryByRecipeId(model.Id);
             MultiSelectList multiCategoryList = new MultiSelectList(_categoryService.List(), "Id", "CategoryName", selectedCategorys);
             model.MultiCategoryList = multiCategoryList;
+
             if (!ModelState.IsValid)
                 return View(model);
-            if (model.RecipeImage != null)
+
+            if (model.ImageFile != null)
             {
                 var fileResult = this._fileService.SaveImage(model.ImageFile);
                 if (fileResult.Item1 == 0)
                 {
-                    TempData["msg"] = "File could not saved";
+                    TempData["msg"] = "File could not be saved";
                     return View(model);
                 }
                 var imageName = fileResult.Item2;
                 model.RecipeImage = imageName;
             }
+
             var result = _recipeService.Update(model);
             if (result)
             {
-                TempData["msg"] = "Recipe added successfully";
+                TempData["msg"] = "Recipe updated successfully";
                 return RedirectToAction(nameof(RecipeList));
             }
             else
@@ -106,6 +116,7 @@ namespace RecipeBookMvc.Controllers
                 return View(model);
             }
         }
+
 
         public IActionResult RecipeList(string term = "")
         {

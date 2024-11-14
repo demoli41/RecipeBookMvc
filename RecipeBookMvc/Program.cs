@@ -6,6 +6,8 @@ using RecipeBookMvc.Repositories.Implementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();

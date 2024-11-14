@@ -32,13 +32,14 @@
                     @if (User.IsInRole("Admin"))
                     {
                         <a href="#">Адміністратор <i class="fa fa-caret-down"></i></a>
-                    }else
+                    }
+                    else
                     {
                         <a href="#">@username<i class="fa fa-caret-down"></i></a>
                     }
 
                     <ul class="dropdown-nav-link">
-                        
+
                         @if (User.IsInRole("Admin"))
                         {
                             <li><a href="/Category/Add">Категорії</a></li>
@@ -49,8 +50,8 @@
                     </ul>
                 </li>
             }
-        
-            @if(string.IsNullOrEmpty(username))
+
+            @if (string.IsNullOrEmpty(username))
             {
                 <li><a href="/UserAuthentication/Login">Увійти</a></li>
             }
@@ -63,7 +64,7 @@
         </div>
     </div>
     <footer>
-            &#169; 2024 Bohdan Shvets
+        &#169; 2024 Bohdan Shvets
     </footer>
 </body>
 </html>
