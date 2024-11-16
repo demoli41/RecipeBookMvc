@@ -94,6 +94,19 @@ body {
   width: 100%;
 }
 
+.language-switcher {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+    .language-switcher select {
+        background: #fff;
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
 .select {
     padding: 0 0.5rem;
     border: 2px;

@@ -1,29 +1,30 @@
 ﻿@model RecipeBookMvc.Models.DTO.RecipeListVM 
+@inject Microsoft.Extensions.Localization.IStringLocalizer Localizer
 
 @{
 }
 
 <div class="tbl-container">
     <div class="nav-bar-list">
-        <h2>Рецепти</h2>
+        <h2>@Localizer["Recipes"]</h2>
         <section class="search-bar">
             <form method="get" asp-action="RecipeList">
-                <input type="text" name="term" placeholder="Пошук">
+                <input type="text" name="term" placeholder="@Localizer["Search"]">
                 <button type="submit"><i class="fa fa-search"></i></button>
-                <a class="btn btn-default" href="/Recipe/RecipeList">Все</a>
+                <a class="btn btn-default" href="/Recipe/RecipeList">@Localizer["All"]</a>
             </form>
         </section>
     </div>
 
     <table>
         <tr>
-            <th>Назва</th>
-            <th>Категорія</th>
-            <th>Зображення</th>
-            <th>Складність</th>
-            <th>Інгредієнти</th>
-            <th>Інструкція</th>
-            <th>Дія</th>
+            <th>@Localizer["The name of the dish"]</th>
+            <th>@Localizer["Categorys"]</th>
+            <th>@Localizer["Image"]</th>
+            <th>@Localizer["Complexity"]</th>
+            <th>@Localizer["Ingredients"]</th>
+            <th>@Localizer["Process"]</th>
+            <th>@Localizer["Action"]</th>
         </tr>
         @foreach (var item in Model.RecipeList)
 		{
@@ -38,13 +39,13 @@
                 <td>@item.Instruction</td>
 				<td>
 					<a href="/Recipe/Edit/@item.Id" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                    <a href="/Recipe/Delete/@item.Id" onclick="return window.confirm('Ви впевнені?')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                    <a href="/Recipe/Delete/@item.Id" onclick="return window.confirm('@Localizer["Are you sure"]?')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 				</td>
 			</tr>
 		}
   
     </table>
     <div class="input-container">
-        <a href="/Recipe/Add" class="btn btn-sec">Повернутись</a>
+        <a href="/Recipe/Add" class="btn btn-sec">@Localizer["Back"]</a>
     </div>
 </div>

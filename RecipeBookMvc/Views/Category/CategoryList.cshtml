@@ -1,14 +1,15 @@
 ﻿@model IEnumerable<RecipeBookMvc.Models.Domain.Category>
+@inject Microsoft.Extensions.Localization.IStringLocalizer Localizer
 @{
 }
 
 <div class="tbl-container">
-    <h2>Категорії</h2>
+    <h2>@Localizer["Categorys"]</h2>
 
     <table>
         <tr>
-            <th>Назва</th>
-            <th>Дія</th>
+            <th>@Localizer["Name"]</th>
+            <th>@Localizer["Action"]</th>
         </tr>
         @foreach (var item in Model)
 		{
@@ -16,13 +17,13 @@
 				<td>@item.CategoryName</td>
 				<td>
 					<a href="/Category/Edit/@item.Id" class="btn btn-default"><i class="fa fa-edit"></i></a>
-                    <a name="id" href="/Category/Delete/@item.Id" onclick="return window.confirm('Ви впевнені?')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                    <a name="id" href="/Category/Delete/@item.Id" onclick="return window.confirm('@Localizer["Are you sure?"]')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 				</td>
 			</tr>
 		}
   
     </table>
     <div class="input-container">
-        <a href="/Category/Add" class="btn btn-sec">Повернутись</a>
+        <a href="/Category/Add" class="btn btn-sec">@Localizer["Back"]</a>
     </div>
 </div>

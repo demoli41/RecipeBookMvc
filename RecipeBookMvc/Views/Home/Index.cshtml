@@ -1,4 +1,4 @@
-﻿﻿
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer Localizer﻿
 @model RecipeBookMvc.Models.DTO.RecipeListVM
 @{
     Layout = "_Layout";
@@ -7,16 +7,16 @@
 <div class="container">
     <section class="search-bar">
         <form method="get" asp-action="Index">
-            <input type="text" name="term" placeholder="Пошук" value="@Model.Term" />
+            <input type="text" name="term" placeholder="@Localizer["Search"]" value="@Model.Term" />
                 <select class="select" name="categoryId">
-                    <option value="">Всі категорії</option>
+                <option value="">@Localizer["All categorys"]</option>
                     @foreach (var category in ViewBag.Categories)
                     {
                         <option class="select-option" value="@category.Id">@category.CategoryName</option>
                     }
                 </select>
             <button type="submit"><i class="fa fa-search"></i></button>
-            <a class="btn btn-default" href="/Home/Index">Все</a>
+            <a class="btn btn-default" href="/Home/Index">@Localizer["All"]</a>
         </form>
     </section>
     <section class="movies">

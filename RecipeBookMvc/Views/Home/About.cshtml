@@ -1,9 +1,9 @@
-﻿
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer Localizer
 @{
 
 }
 
-<h2>About us</h2>
+<h2>@Localizer["About us"]</h2>
 <p>
-	Coming soon
+	@Localizer["Coming soon"]
 </p>

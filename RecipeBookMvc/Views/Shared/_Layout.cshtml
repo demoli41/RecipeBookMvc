@@ -1,4 +1,5 @@
-﻿@{
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer Localizer
+@{
     string username = User.Identity.Name;
 }
 
@@ -24,14 +25,14 @@
             recipe book
         </div>
         <ul class="nav-link">
-            <li><a class="active" href="/Home/Index">Головна</a></li>
-            <li><a href="/Home/About">Про нас</a></li>
+            <li><a class="active" href="/Home/Index">@Localizer["main"]</a></li>
+            <li><a href="/Home/About">@Localizer["About us"]</a></li>
             @if (!string.IsNullOrEmpty(username))
             {
                 <li>
                     @if (User.IsInRole("Admin"))
                     {
-                        <a href="#">Адміністратор <i class="fa fa-caret-down"></i></a>
+                        <a href="#">@Localizer["Admin"] <i class="fa fa-caret-down"></i></a>
                     }
                     else
                     {
@@ -42,21 +43,41 @@
 
                         @if (User.IsInRole("Admin"))
                         {
-                            <li><a href="/Category/Add">Категорії</a></li>
+                            <li><a href="/Category/Add">@Localizer["Categorys"]</a></li>
                         }
-                        <li><a href="/Recipe/Add">Рецепти</a></li>
+                        <li><a href="/Recipe/Add">@Localizer["Recipes"]</a></li>
 
-                        <li><a href="/UserAuthentication/Logout">Вихід</a></li>
+                        <li><a href="/UserAuthentication/Logout">@Localizer["Logout"]</a></li>
                     </ul>
                 </li>
             }
 
             @if (string.IsNullOrEmpty(username))
             {
-                <li><a href="/UserAuthentication/Login">Увійти</a></li>
+                <li><a href="/UserAuthentication/Login">@Localizer["Login"]</a></li>
             }
-
+            <div style="display: inline-block;">
+                <button class="btn btn-default" onclick="setLanguage('en')">English</button>
+                <button class="btn btn-sec" onclick="setLanguage('uk')">Українська</button>
+            </div>
         </ul>
+        <script>
+            function setLanguage(culture) {
+                // Надсилання запиту на сервер для зміни кукі
+                fetch('/Home/SetLanguage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `culture=${culture}&returnUrl=${encodeURIComponent(window.location.pathname)}`,
+                })
+                .then(() => {
+                    // Оновлення сторінки після зміни мови
+                    window.location.reload();
+                })
+                .catch(error => console.error('Error setting language:', error));
+            }
+        </script>
     </nav>
     <div>
         <div class="container">

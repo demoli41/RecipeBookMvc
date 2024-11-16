@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using RecipeBookMvc.Repositories.Abstract;
 using RecipeBookMvc.Repositories.Implementation;
 
@@ -28,6 +29,21 @@ namespace RecipeBookMvc.Controllers
         {
             var recipe = _recipeService.GetById(recipeId);
             return View(recipe);
+        }
+        [HttpPost]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Console.WriteLine($"Culture: {culture}");
+            if (!string.IsNullOrEmpty(culture))
+            {
+                Response.Cookies.Append(
+                    CookieRequestCultureProvider.DefaultCookieName,
+                    CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                    new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+                );
+            }
+
+            return LocalRedirect(returnUrl ?? "/");
         }
     }
 }

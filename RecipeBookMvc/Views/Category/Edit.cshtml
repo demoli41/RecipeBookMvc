@@ -1,13 +1,14 @@
 ﻿@model RecipeBookMvc.Models.Domain.Category
+@inject Microsoft.Extensions.Localization.IStringLocalizer Localizer
 @{
 }
 
 <form class="w-40" asp-action="Edit" method="post">
-    <h2 class="pb-10">Редагувати категорію</h2>
+    <h2 class="pb-10">@Localizer["Category edit"]</h2>
     <input type="hidden" class="input" asp-for="Id">
 
     <div class="input-container">
-        <label asp-for="CategoryName" class="w-40">Назва категорії</label>
+        <label asp-for="CategoryName" class="w-40">@Localizer["Category name"]</label>
         <input type="text" class="input" asp-for="CategoryName">
     </div>
     <div class="message-box pd-x-28 error">
@@ -23,7 +24,7 @@
     }
 
     <div class="input-container">
-        <button class="btn btn-default" type="submit">Зберегти</button>
-        <a class="btn btn-sec" href="/Category/CategoryList">Усі категорії</a>
+        <button class="btn btn-default" type="submit">@Localizer["Save"]</button>
+        <a class="btn btn-sec" href="/Category/CategoryList">@Localizer["All categorys"]</a>
     </div>
 </form>
