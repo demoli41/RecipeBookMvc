@@ -21,6 +21,7 @@ namespace RecipeBookMvc.Controllers
             var recipes = _recipeService.List(term, categoryId, true, currentPage, sortOrder);
             return View(recipes);
         }
+
         public IActionResult About()
         {
             return View();

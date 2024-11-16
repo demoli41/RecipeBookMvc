@@ -142,10 +142,10 @@
     <value>All recipes</value>
   </data>
   <data name="Alphabetically (A-Z)" xml:space="preserve">
-    <value>Alphabetically (A-Z)</value>
+    <value> (A-Z)</value>
   </data>
   <data name="Alphabetically (Z-A)" xml:space="preserve">
-    <value>Alphabetically (Z-A)</value>
+    <value> (Z-A)</value>
   </data>
   <data name="Are you sure?" xml:space="preserve">
     <value>Are you sure?</value>

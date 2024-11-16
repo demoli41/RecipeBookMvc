@@ -142,10 +142,10 @@
     <value>Усі рецепти</value>
   </data>
   <data name="Alphabetically (A-Z)" xml:space="preserve">
-    <value>За алфавітом (А-Я)</value>
+    <value> (А-Я)</value>
   </data>
   <data name="Alphabetically (Z-A)" xml:space="preserve">
-    <value>За алфавітом (Я-А)</value>
+    <value> (Я-А)</value>
   </data>
   <data name="Are you sure?" xml:space="preserve">
     <value>Ви впевнені?</value>

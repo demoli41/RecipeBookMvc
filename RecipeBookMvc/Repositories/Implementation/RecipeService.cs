@@ -111,11 +111,11 @@ namespace RecipeBookMvc.Repositories.Implementation
             // Пагінація
             if (paging)
             {
-                int pageSize = 10;
+                int pageSize = 10; // Фіксований розмір сторінки
                 int count = list.Count();
                 int totalPages = (int)Math.Ceiling(count / (double)pageSize);
                 list = list.Skip((currentPage - 1) * pageSize).Take(pageSize);
-                data.PageSize = pageSize;
+                data.PageSize = pageSize; // Встановлення розміру сторінки
                 data.CurrentPage = currentPage;
                 data.TotalPages = totalPages;
             }
@@ -131,6 +131,10 @@ namespace RecipeBookMvc.Repositories.Implementation
             }
 
             data.RecipeList = recipeList.AsQueryable();
+            data.Term = term;
+            data.SelectedCategoryId = categoryId;
+            data.SortOrder = sortOrder;
+
             return data;
         }
 

@@ -50,11 +50,11 @@
         {
             if (i == Model.CurrentPage)
             {
-                <a class="active" href="/Home/Index?currentPage=@i&term=@Model.Term">@i</a>
+                <a class="active" href="/Home/Index?currentPage=@i&term=@Model.Term&categoryId=@Model.SelectedCategoryId&sortOrder=@Model.SortOrder">@i</a>
             }
             else
             {
-                <a href="/Home/Index?currentPage=@i&term=@Model.Term">@i</a>
+                <a href="/Home/Index?currentPage=@i&term=@Model.Term&categoryId=@Model.SelectedCategoryId&sortOrder=@Model.SortOrder">@i</a>
             }
         }
     </div>
