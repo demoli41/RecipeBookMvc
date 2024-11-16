@@ -73,19 +73,19 @@ namespace RecipeBookMvc.Repositories.Implementation
             return recipe;
         }
 
-        public RecipeListVM List(string term = "", int? categoryId = null, bool paging = false, int currentPage = 0)
+        public RecipeListVM List(string term = "", int? categoryId = null, bool paging = false, int currentPage = 0, string sortOrder = "")
         {
             var data = new RecipeListVM();
-
             var list = ctx.Recipe.AsQueryable();
 
+            // Пошук
             if (!string.IsNullOrEmpty(term))
             {
                 term = term.ToLower();
                 list = list.Where(a => a.Title.ToLower().Contains(term));
             }
 
-            
+            // Фільтрація за категоріями
             if (categoryId.HasValue)
             {
                 var recipeIds = ctx.RecipeCategory
@@ -95,7 +95,20 @@ namespace RecipeBookMvc.Repositories.Implementation
                 list = list.Where(r => recipeIds.Contains(r.Id));
             }
 
-            
+            // Сортування
+            if (!string.IsNullOrEmpty(sortOrder))
+            {
+                if (sortOrder.ToLower() == "asc")
+                {
+                    list = list.OrderBy(r => r.Title);
+                }
+                else if (sortOrder.ToLower() == "desc")
+                {
+                    list = list.OrderByDescending(r => r.Title);
+                }
+            }
+
+            // Пагінація
             if (paging)
             {
                 int pageSize = 10;
@@ -106,6 +119,7 @@ namespace RecipeBookMvc.Repositories.Implementation
                 data.CurrentPage = currentPage;
                 data.TotalPages = totalPages;
             }
+
             var recipeList = list.ToList();
             foreach (var recipe in recipeList)
             {
@@ -117,9 +131,6 @@ namespace RecipeBookMvc.Repositories.Implementation
             }
 
             data.RecipeList = recipeList.AsQueryable();
-            return data;
-
-            data.RecipeList = list.ToList().AsQueryable();
             return data;
         }
 

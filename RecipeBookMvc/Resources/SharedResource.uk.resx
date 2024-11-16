@@ -126,7 +126,7 @@
   <data name="Add category" xml:space="preserve">
     <value>Додати категорію</value>
   </data>
-  <data name="Add recip" xml:space="preserve">
+  <data name="Add recipe" xml:space="preserve">
     <value>Додати рецепт</value>
   </data>
   <data name="Admin" xml:space="preserve">
@@ -140,6 +140,12 @@
   </data>
   <data name="All recipes" xml:space="preserve">
     <value>Усі рецепти</value>
+  </data>
+  <data name="Alphabetically (A-Z)" xml:space="preserve">
+    <value>За алфавітом (А-Я)</value>
+  </data>
+  <data name="Alphabetically (Z-A)" xml:space="preserve">
+    <value>За алфавітом (Я-А)</value>
   </data>
   <data name="Are you sure?" xml:space="preserve">
     <value>Ви впевнені?</value>
@@ -218,6 +224,9 @@
   </data>
   <data name="Select category" xml:space="preserve">
     <value>Оберіть категорію</value>
+  </data>
+  <data name="Sort by" xml:space="preserve">
+    <value>Сортувати за</value>
   </data>
   <data name="The name of the dish" xml:space="preserve">
     <value>Назва страви</value>

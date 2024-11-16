@@ -15,6 +15,11 @@
                         <option class="select-option" value="@category.Id">@category.CategoryName</option>
                     }
                 </select>
+            <select class="select" name="sortOrder">
+                <option value="">@Localizer["Sort by"]</option>
+                <option value="asc">@Localizer["Alphabetically (A-Z)"]</option>
+                <option value="desc">@Localizer["Alphabetically (Z-A)"]</option>
+            </select>
             <button type="submit"><i class="fa fa-search"></i></button>
             <a class="btn btn-default" href="/Home/Index">@Localizer["All"]</a>
         </form>

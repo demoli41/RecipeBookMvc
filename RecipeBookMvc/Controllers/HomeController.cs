@@ -15,10 +15,10 @@ namespace RecipeBookMvc.Controllers
             _recipeService = recipeService;
             _categoryService = categoryService;
         }
-        public IActionResult Index(string term = "", int currentPage = 1, int? categoryId = null)
+        public IActionResult Index(string term = "", int currentPage = 1, int? categoryId = null, string sortOrder = "")
         {
             ViewBag.Categories = _categoryService.List();
-            var recipes = _recipeService.List(term, categoryId, true, currentPage);
+            var recipes = _recipeService.List(term, categoryId, true, currentPage, sortOrder);
             return View(recipes);
         }
         public IActionResult About()
