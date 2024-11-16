@@ -4,18 +4,18 @@ namespace RecipeBookMvc.Models.DTO
 {
     public class RegistrationModel
     {
-        [Required(ErrorMessage ="Ім'я є обов'язковим")]
+        [Required(ErrorMessage ="Name required")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Пошта є обов'язковою")]
+        [Required(ErrorMessage = "Email required")]
         [EmailAddress]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Логін є обов'язковим")]
+        [Required(ErrorMessage = "Login required")]
         public string Username { get; set; }
 
-        [Required(ErrorMessage = "Пароль є обов'язковим")]
-        [RegularExpression("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*[#$^+=!*()@%&]).{6,}$", ErrorMessage = "Мінімальна довжина 6 і має містити 1 великий регістр, 1 нижній регістр, 1 спеціальний символ і 1 цифру")]
+        [Required(ErrorMessage = "Password required")]
+        [RegularExpression("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*[#$^+=!*()@%&]).{6,}$", ErrorMessage = "Minimum length is 6 and must contain 1 upper case, 1 lower case, 1 special character and 1 number")]
         public string Password { get; set; }
-        [Required(ErrorMessage = "Підтвердження є обов'язковим")]
+        [Required(ErrorMessage = "Password confirm required")]
         [Compare("Password")]
         public string PasswordConfirm { get; set; }
         public string Role { get; set; } = "User";

@@ -11,12 +11,12 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddLocalization(/*options => options.ResourcesPath = "Resources"*/);
 
 builder.Services.AddSingleton<Microsoft.Extensions.Localization.IStringLocalizer>(provider =>
 {
     var factory = provider.GetRequiredService<Microsoft.Extensions.Localization.IStringLocalizerFactory>();
-    return factory.Create("SharedResource", typeof(Program).Assembly.GetName().Name);
+    return factory.Create(typeof(SharedResource));
 });
 
 var mvcBuilder = builder.Services

@@ -7,15 +7,15 @@ namespace RecipeBookMvc.Models.Domain
     public class Recipe
     {
         public int Id { get; set; }
-        [Required(ErrorMessage ="Назва рецепту обов'язкова")]
+        [Required(ErrorMessage ="Recipe title required")]
         public string? Title { get; set; }
-        [Required(ErrorMessage = "Складність є обов'язковою")]
+        [Required(ErrorMessage = "Complexity required")]
         public string? Complexity { get; set; }
         public string? RecipeImage { get; set; }
-        [Required(ErrorMessage ="Поле з інгредієнтами є обов'язковим")]
+        [Required(ErrorMessage ="Field with ingredients required")]
 
         public string? Ingredients { get; set; }
-        [Required(ErrorMessage ="Інструкція є обов'язковою")]
+        [Required(ErrorMessage ="Instruction required")]
 
         public string? Instruction { get; set; }
         public string? UserId { get; set; }
@@ -23,7 +23,7 @@ namespace RecipeBookMvc.Models.Domain
         [NotMapped]
         public IFormFile ? ImageFile { get; set; }
         [NotMapped]
-        [Required(ErrorMessage ="Категорії не вибрано")]
+        [Required(ErrorMessage ="Categorys required")]
 
         public List<int> ? Categorys { get; set; }
         [NotMapped]

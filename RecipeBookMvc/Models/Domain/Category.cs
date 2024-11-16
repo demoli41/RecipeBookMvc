@@ -5,7 +5,7 @@ namespace RecipeBookMvc.Models.Domain
     public class Category
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Необхідна назва категорії")]
+        [Required(ErrorMessage = "Category name required")]
         public string? CategoryName { get; set; }
     }
 }

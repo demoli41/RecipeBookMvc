@@ -118,7 +118,40 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Category name required" xml:space="preserve">
-    <value>Необхідна назва категорії</value>
+    <value>Category name required</value>
+  </data>
+  <data name="Categorys required" xml:space="preserve">
+    <value>Необхідно вибрати категорії</value>
+  </data>
+  <data name="Complexity required" xml:space="preserve">
+    <value>Складність є обо'язковою</value>
+  </data>
+  <data name="Email required" xml:space="preserve">
+    <value>введіть Email </value>
+  </data>
+  <data name="Field with ingredients required" xml:space="preserve">
+    <value>Поле з інгредієнтами є обов'язковим</value>
+  </data>
+  <data name="Instruction required" xml:space="preserve">
+    <value>Інструкція є обов'язковою</value>
+  </data>
+  <data name="Login required" xml:space="preserve">
+    <value>Логін є обов'язковим</value>
+  </data>
+  <data name="Minimum length is 6 and must contain 1 upper case, 1 lower case, 1 special character and 1 number" xml:space="preserve">
+    <value>Мінімальна довжина 6 і має містити 1 великий регістр, 1 нижній регістр, 1 спеціальний символ і 1 цифру</value>
+  </data>
+  <data name="Name required" xml:space="preserve">
+    <value>Ім'я є обов'язковим</value>
+  </data>
+  <data name="Password confirm required" xml:space="preserve">
+    <value>Підтвердження є обов'язковим</value>
+  </data>
+  <data name="Password required" xml:space="preserve">
+    <value>Пароль є обов'язковим</value>
+  </data>
+  <data name="Recipe title required" xml:space="preserve">
+    <value>Назва рецепту обов'язкова</value>
   </data>
   <data name="This field is required" xml:space="preserve">
     <value>Це поле є обов'язковим</value>
