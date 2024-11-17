@@ -92,6 +92,10 @@ namespace RecipeBookMvc.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
+            // Отримуємо ID користувача
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            model.UserId = userId; // Встановлюємо правильний UserId
+
             if (model.ImageFile != null)
             {
                 var fileResult = this._fileService.SaveImage(model.ImageFile);
