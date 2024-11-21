@@ -123,6 +123,9 @@
   <data name="Action" xml:space="preserve">
     <value>Action</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="Add category" xml:space="preserve">
     <value>Add category</value>
   </data>
@@ -168,6 +171,9 @@
   <data name="Complexity" xml:space="preserve">
     <value>Complexity</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="Don`t have an account ?" xml:space="preserve">
     <value>Don`t have an account ?</value>
   </data>
@@ -179,6 +185,9 @@
   </data>
   <data name="Ingredients" xml:space="preserve">
     <value>Ingredients</value>
+  </data>
+  <data name="Log in to leave a review" xml:space="preserve">
+    <value>Log in to leave a review.</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
@@ -198,6 +207,9 @@
   <data name="Name1" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="on" xml:space="preserve">
+    <value>on</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -216,6 +228,9 @@
   <data name="Registration" xml:space="preserve">
     <value>Registration</value>
   </data>
+  <data name="Reviews" xml:space="preserve">
+    <value>Reviews</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
@@ -233,5 +248,8 @@
   </data>
   <data name="User name" xml:space="preserve">
     <value>User name</value>
+  </data>
+  <data name="Write your review..." xml:space="preserve">
+    <value>Write your review...</value>
   </data>
 </root>

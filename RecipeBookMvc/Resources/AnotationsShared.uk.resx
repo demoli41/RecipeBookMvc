@@ -126,6 +126,9 @@
   <data name="Complexity required" xml:space="preserve">
     <value>Складність є обо'язковою</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
   <data name="Email required" xml:space="preserve">
     <value>введіть Email </value>
   </data>
@@ -152,6 +155,9 @@
   </data>
   <data name="Recipe title required" xml:space="preserve">
     <value>Назва рецепту обов'язкова</value>
+  </data>
+  <data name="Review text is required" xml:space="preserve">
+    <value>Введіть текст</value>
   </data>
   <data name="This field is required" xml:space="preserve">
     <value>Це поле є обов'язковим</value>

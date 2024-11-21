@@ -1,6 +1,7 @@
 ﻿using RecipeBookMvc.Repositories.Abstract;
 using RecipeBookMvc.Models.Domain;
 using RecipeBookMvc.Models.DTO;
+using Microsoft.EntityFrameworkCore;
 
 namespace RecipeBookMvc.Repositories.Implementation
 {
@@ -59,7 +60,9 @@ namespace RecipeBookMvc.Repositories.Implementation
 
         public Recipe GetById(int id)
         {
-            var recipe = ctx.Recipe.Find(id);
+            var recipe = ctx.Recipe
+                            .Include(r => r.Reviews) // Завантаження відгуків
+                            .FirstOrDefault(r => r.Id == id);
 
             if (recipe != null)
             {
@@ -174,6 +177,52 @@ namespace RecipeBookMvc.Repositories.Implementation
         {
             var categoryIds = ctx.RecipeCategory.Where(a => a.RecipeId == recipeId).Select(a => a.CategoryId).ToList();
             return categoryIds;
+        }
+
+        public bool DeleteReview(int reviewId, string userId, bool isAdmin)
+        {
+            try
+            {
+                var review = ctx.Reviews.FirstOrDefault(r => r.Id == reviewId);
+                if (review == null)
+                {
+                    return false; 
+                }
+                if (review.UserId != userId && !isAdmin)
+                {
+                    return false;
+                }
+
+                ctx.Reviews.Remove(review);
+                ctx.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool AddReview(Review review)
+        {
+            try
+            {
+                ctx.Reviews.Add(review);
+                ctx.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<Review> GetReviewsByRecipeId(int recipeId)
+        {
+            return ctx.Reviews
+                      .Where(r => r.RecipeId == recipeId)
+                      .OrderByDescending(r => r.CreatedDate) 
+                      .ToList();
         }
     }
 }

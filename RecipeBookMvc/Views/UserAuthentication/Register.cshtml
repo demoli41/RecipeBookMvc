@@ -43,12 +43,12 @@
     <div class="message-box pd-x-28 error">
         <span asp-validation-for="PasswordConfirm"> </span>
     </div>
-    <input type="hidden" asp-for="Role" value="User" />
-@*     <div class="input-container">
+ @*    <input type="hidden" asp-for="Role" value="User" /> *@
+    <div class="input-container">
         <label class="w-40" asp-for="Role">Роль</label>
         <input class="input" asp-for="Role" />
         <span asp-validation-for="Role" class="text-danger"></span>
-    </div> *@
+    </div>
 
     @if (TempData["msg"] != null)
     {

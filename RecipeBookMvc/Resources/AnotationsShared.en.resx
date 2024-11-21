@@ -126,6 +126,9 @@
   <data name="Complexity required" xml:space="preserve">
     <value>Complexity required</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="Email required" xml:space="preserve">
     <value>Email required</value>
   </data>
@@ -152,6 +155,9 @@
   </data>
   <data name="Recipe title required" xml:space="preserve">
     <value>Recipe title required</value>
+  </data>
+  <data name="Review text is required" xml:space="preserve">
+    <value>Review text is required</value>
   </data>
   <data name="This field is required" xml:space="preserve">
     <value>This field is required</value>

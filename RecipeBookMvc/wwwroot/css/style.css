@@ -17,7 +17,14 @@ body {
   justify-content: space-between;
 }
 
-.nav-bar-list{
+.one-raw {
+    display: flex;
+    justify-content: space-between;
+    gap: 2vh;
+    margin-bottom: 2vh;
+}
+
+.nav-bar-list {
     font-family: "Poppins", sans-serif;
     display: flex;
     /* background-color: var(--nav-bg-color); */

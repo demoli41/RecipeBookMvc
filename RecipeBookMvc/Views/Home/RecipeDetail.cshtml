@@ -21,6 +21,48 @@
         </div>
     </div>
 </div>
+
+<div class="movie-detail w-80 m-auto">
+@* <h3>@Localizer["Reviews"]</h3> *@
+<div class="reviews">
+    <div class="one-raw">
+        @if (User!=null && (User.IsInRole("Admin") || User.IsInRole("User")))
+        {
+                <form class="one-raw asp-action="AddReview" method="post">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <textarea name="text" placeholder="@Localizer["Write your review..."]" required></textarea>
+                <button class="btn btn-sec" type="submit">@Localizer["Add"]</button>
+            </form>
+        }
+        else
+        {
+             <p>@Localizer["Log in to leave a review"]</p>
+        }
+</div>
+        <div class="tbl-container">
+        <table>
+        @foreach (var review in Model.Reviews)
+        {
+            <tr>
+                <td>@review.Text</td>
+                        <td>@review.UserId | @review.CreatedDate.ToShortDateString()</td>
+
+                <td>@if (User.Identity.Name == review.UserId || User.IsInRole("Admin"))
+                {
+                    <form asp-action="DeleteReview" method="post">
+                        <input type="hidden" name="reviewId" value="@review.Id" />
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <button type="submit" class="btn btn-danger">@Localizer["Delete"]</button>
+                    </form>
+                }
+                        </td>
+            </tr>
+        }
+        </table>
+        </div>
+</div>
+</div>
+
 <div class="w-80 m-auto">
     <a href="/Home/Index" class="btn btn-default">@Localizer["Back"]</a>
 </div>

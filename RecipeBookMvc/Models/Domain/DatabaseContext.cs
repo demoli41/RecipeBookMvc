@@ -14,7 +14,17 @@ namespace RecipeBookMvc.Models.Domain
         public DbSet<RecipeCategory> RecipeCategory { get; set; }
 
         public DbSet<Recipe> Recipe { get; set; }
+        public DbSet<Review> Reviews { get; set; } // Новий DbSet для відгуків
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Визначення зв'язку між Recipe та Review
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.Recipe)
+                .WithMany(r => r.Reviews)
+                .HasForeignKey(r => r.RecipeId);
 
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

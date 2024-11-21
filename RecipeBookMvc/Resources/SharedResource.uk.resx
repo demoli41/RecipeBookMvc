@@ -123,6 +123,9 @@
   <data name="Action" xml:space="preserve">
     <value>Дія</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Додати</value>
+  </data>
   <data name="Add category" xml:space="preserve">
     <value>Додати категорію</value>
   </data>
@@ -168,6 +171,9 @@
   <data name="Complexity" xml:space="preserve">
     <value>Складність</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
   <data name="Don`t have an account ?" xml:space="preserve">
     <value>Немає облікового запису?</value>
   </data>
@@ -179,6 +185,9 @@
   </data>
   <data name="Ingredients" xml:space="preserve">
     <value>Інгредієнти</value>
+  </data>
+  <data name="Log in to leave a review" xml:space="preserve">
+    <value>Увійдіть, щоб додати відгук</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Увійти</value>
@@ -198,6 +207,9 @@
   <data name="Name1" xml:space="preserve">
     <value>Ім'я</value>
   </data>
+  <data name="on" xml:space="preserve">
+    <value>в</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Пароль</value>
   </data>
@@ -216,6 +228,9 @@
   <data name="Registration" xml:space="preserve">
     <value>Реєстрація</value>
   </data>
+  <data name="Reviews" xml:space="preserve">
+    <value>Відгуки</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Зберегти</value>
   </data>
@@ -233,5 +248,8 @@
   </data>
   <data name="User name" xml:space="preserve">
     <value>Ім'я користувача</value>
+  </data>
+  <data name="Write your review..." xml:space="preserve">
+    <value>Подільться своєю думкою...</value>
   </data>
 </root>

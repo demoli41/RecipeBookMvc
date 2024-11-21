@@ -12,7 +12,11 @@ namespace RecipeBookMvc.Repositories.Abstract
 
         RecipeListVM List(string term = "", int? categoryId = null, bool paging = false, int currentPage = 0, string sortOrder = "");
 
-
         List<int> GetCategoryByRecipeId(int recipeId);
+
+        bool AddReview(Review review);
+        List<Review> GetReviewsByRecipeId(int recipeId); 
+        bool DeleteReview(int reviewId, string userId, bool isAdmin);
+
     }
 }

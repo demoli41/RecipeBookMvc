@@ -71,7 +71,7 @@ namespace RecipeBookMvc.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Complexity = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Complexity = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RecipeImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Ingredients = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Instruction = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -202,6 +202,28 @@ namespace RecipeBookMvc.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Reviews",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RecipeId = table.Column<int>(type: "int", nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reviews", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reviews_Recipe_RecipeId",
+                        column: x => x.RecipeId,
+                        principalTable: "Recipe",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -240,6 +262,11 @@ namespace RecipeBookMvc.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reviews_RecipeId",
+                table: "Reviews",
+                column: "RecipeId");
         }
 
         /// <inheritdoc />
@@ -264,16 +291,19 @@ namespace RecipeBookMvc.Migrations
                 name: "Category");
 
             migrationBuilder.DropTable(
-                name: "Recipe");
+                name: "RecipeCategory");
 
             migrationBuilder.DropTable(
-                name: "RecipeCategory");
+                name: "Reviews");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Recipe");
         }
     }
 }

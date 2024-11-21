@@ -29,7 +29,7 @@
 
         @foreach (var recipe in Model.RecipeList)
         {
-            <div class="movie-card" onclick="window.location.href='/Home/RecipeDetail?recipeId=@recipe.Id'">
+            <div class="movie-card" onclick="window.location.href='/Home/RecipeDetail/@recipe.Id'">
                 <div class="movie-image">
                     <img src="/Uploads/@recipe.RecipeImage">
                 </div>

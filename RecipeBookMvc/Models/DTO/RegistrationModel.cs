@@ -18,7 +18,7 @@ namespace RecipeBookMvc.Models.DTO
         [Required(ErrorMessage = "Password confirm required")]
         [Compare("Password")]
         public string PasswordConfirm { get; set; }
-        public string Role { get; set; } = "User";
-        //public string Role { get; set; }
+        //public string Role { get; set; } = "User";
+        public string Role { get; set; }
     }
 }
